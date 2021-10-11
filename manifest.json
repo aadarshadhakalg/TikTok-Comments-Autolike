@@ -1,0 +1,26 @@
+{
+    "manifest_version": 3,
+    "name": "TikTok AutoLiker",
+    "version": "0.0.1",
+    "author": "Aadarsha Dhakal",
+    "description": "A bot that will autolike the tiktok videos.",
+    "short_name": "TTAL",
+    "action": {
+        "default_popup": "index.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://tiktok.com/*",
+                "*://*.tiktok.com/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "permissions": [
+        "activeTab",
+        "tabs"
+    ]
+}
