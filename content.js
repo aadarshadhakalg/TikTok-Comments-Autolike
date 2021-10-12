@@ -1,4 +1,5 @@
 chrome.runtime.onMessage.addListener(function (request) {
+    console.log("sg");
     if (request.action === 'executeCode') {
         startLiking();
     }
@@ -6,24 +7,22 @@ chrome.runtime.onMessage.addListener(function (request) {
 
 
 async function startLiking() {
-
     let content = document.querySelector(".comment-container");
-
     let temp = 0;
-
-    do {
-        content.scrollTop = content.scrollHeight - content.clientHeight;
-
+    content.scrollTop = content.scrollHeight - content.clientHeight;
+    await sleep(1000);
+    while (temp != content.scrollTop) {
         temp = content.scrollTop;
-
-    } while (temp != content.scrollTop);
+        content.scrollTop = content.scrollHeight - content.clientHeight;
+        await sleep(1000);
+    }
 
     let likeButtons = document.querySelectorAll('.like-container > .icon');
 
     console.log(likeButtons);
 
     for (elt of likeButtons) {
-        await sleep(3000);
+        await sleep(1000);
         elt.click();
     }
 }
